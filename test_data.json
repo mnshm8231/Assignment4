@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "question": "How many minutes late can a student be before they are barred from the exam?",
+    "answer": "20 minutes.",
+    "source": "ncu6.pdf"
+  },
+  {
+    "id": 2,
+    "question": "Can I leave the exam room 30 minutes after it starts?",
+    "answer": "No, you must wait 40 minutes.",
+    "source": "ncu6.pdf"
+  },
+  {
+    "id": 3,
+    "question": "What is the penalty for forgetting my student ID?",
+    "answer": "5 points deduction.",
+    "source": "ncu6.pdf"
+  },
+  {
+    "id": 4,
+    "question": "What is the penalty for using electronic devices with communication capabilities during an exam?",
+    "answer": "5 points deduction, or up to zero score.",
+    "source": "ncu6.pdf"
+  },
+  {
+    "id": 5,
+    "question": "What is the penalty for cheating, such as copying or passing notes, during an exam?",
+    "answer": "Zero score and disciplinary action.",
+    "source": "ncu6.pdf"
+  },
+  {
+    "id": 6,
+    "question": "Is a student allowed to take the question paper out of the exam room?",
+    "answer": "No, the score will be zero.",
+    "source": "ncu6.pdf"
+  },
+  {
+    "id": 7,
+    "question": "What happens if a student threatens the invigilator?",
+    "answer": "Zero score and disciplinary action.",
+    "source": "ncu6.pdf"
+  },
+  {
+    "id": 8,
+    "question": "What is the fee for replacing a lost EasyCard student ID?",
+    "answer": "200 NTD.",
+    "source": "ncu5.pdf"
+  },
+  {
+    "id": 9,
+    "question": "What is the fee for replacing a lost Mifare (non-EasyCard) student ID?",
+    "answer": "100 NTD.",
+    "source": "ncu5.pdf"
+  },
+  {
+    "id": 10,
+    "question": "How many working days does it take to get a new student ID after application?",
+    "answer": "3 working days.",
+    "source": "ncu5.pdf"
+  },
+  {
+    "id": 11,
+    "question": "What is the minimum total credits required for undergraduate graduation?",
+    "answer": "128 credits.",
+    "source": "ncu1.pdf"
+  },
+  {
+    "id": 12,
+    "question": "How many semesters of Physical Education (PE) are required for undergraduate students?",
+    "answer": "5 semesters.",
+    "source": "ncu1.pdf"
+  },
+  {
+    "id": 13,
+    "question": "Are Military Training credits counted towards graduation credits?",
+    "answer": "No.",
+    "source": "ncu1.pdf"
+  },
+  {
+    "id": 14,
+    "question": "What is the standard duration of study for a bachelor's degree?",
+    "answer": "4 years.",
+    "source": "ncu1.pdf"
+  },
+  {
+    "id": 15,
+    "question": "What is the maximum extension period for undergraduate study duration?",
+    "answer": "2 years.",
+    "source": "ncu1.pdf"
+  },
+  {
+    "id": 16,
+    "question": "What is the passing score for undergraduate students?",
+    "answer": "60 points.",
+    "source": "ncu1.pdf"
+  },
+  {
+    "id": 17,
+    "question": "What is the passing score for graduate (Master/PhD) students?",
+    "answer": "70 points.",
+    "source": "ncu1.pdf"
+  },
+  {
+    "id": 18,
+    "question": "Under what condition will an undergraduate student be dismissed (expelled) due to poor grades?",
+    "answer": "Failing more than half (1/2) of credits for two semesters.",
+    "source": "ncu1.pdf"
+  },
+  {
+    "id": 19,
+    "question": "Can a student take a make-up exam for a failed semester grade?",
+    "answer": "No.",
+    "source": "ncu1.pdf"
+  },
+  {
+    "id": 20,
+    "question": "What is the maximum duration for a leave of absence (suspension of schooling)?",
+    "answer": "2 academic years.",
+    "source": "ncu1.pdf"
+  }
+]
