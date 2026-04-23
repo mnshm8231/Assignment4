@@ -163,26 +163,39 @@ After merging, results are re-scored. Rules from the right regulation get a high
 
 **Final result: 17 / 20 (85%)**
 
+#### Improvement Process
+
+The system went through two main rounds of fixes before reaching the final score.
+
+**Round 1 — from early version to 65% (13/20)**
+
+At this stage, 7 questions were failing: Q3, Q5, Q8, Q9, Q13, Q17, Q18. The main problems were:
+
+- **Wrong regulation targeted** — "forgetting student ID" was classified as an admin question instead of an exam question, so the system searched the wrong regulation entirely. Fixed by adding a secondary keyword check: if the question contains words like "penalty" or "forgot", force it to search the exam rules.
+- **Correct rule ranked too low** — the right rule was sometimes ranked 7th–10th and got cut off. Fixed by extending the result window from top 6 to top 10.
+- **Chinese number formats not recognized** — the Student ID rules used Chinese characters for amounts (e.g. 壹佰, 貳佰). The LLM could not reliably read these as 100 and 200. Fixed by adding a normalization step before passing evidence to the LLM.
+- **LLM gave inconsistent answers for simple facts** — for questions about fees, passing scores, and working days, the LLM sometimes avoided giving a direct answer. Fixed by adding pattern-based direct answers for these question types, bypassing the LLM when the evidence clearly contains the answer.
+
+**Round 2 — from 65% to 85% (17/20)**
+
+After round 1, the remaining failures were mostly caused by the system retrieving articles from the wrong context:
+
+- Q13, Q18: questions about undergraduate rules were retrieving graduate-level articles. Fixed by adding a penalty in the reranking step when the retrieved rule mentions the wrong degree level.
+- Q17: the graduate passing score (70) was in the evidence but the LLM still gave a vague answer. Fixed by the direct pattern matching added in round 1.
+
+#### Remaining failures (3 questions)
+
 **Q9 — Fee for Mifare (non-EasyCard) student ID**
 - Expected: 100 NTD, Got: 200 NTD
-- The evidence had both 200 NTD and 100 NTD values. The EasyCard check ran first and returned 200 NTD without checking the card type in the question.
+- The evidence contained both values. The EasyCard pattern matched first and returned 200 NTD without checking which card type the question was asking about.
 
 **Q15 — Maximum extension period for undergraduate study**
 - Expected: 2 years, Got: "two academic years" (wrong article)
-- Two different articles both say "two academic years" — one is about study extension, the other is about leave of absence. The wrong one ranked higher.
+- Two articles both contain "two academic years" — one about study extension, one about leave of absence. The wrong one ranked higher because they share the same keywords.
 
 **Q18 — Condition for dismissal due to poor grades**
 - Expected: failing more than half of credits for two semesters, Got: answer about misconduct
-- There are multiple dismissal rules in the regulations. The retrieval picked the wrong one.
-
-**Improvements made:**
-
-| Problem | improvement |
-|---------|-------------|
-| "Forgetting student ID" went to wrong regulation | Added extra keyword check to force exam classification |
-| Correct rule was ranked 7th–10th and got cut off | Extended result window from top 6 to top 10 |
-| LLM got confused by long article text with many numbers | Changed to use `action → result` pairs as main evidence |
-| LLM gave inconsistent answers for simple factual questions | Added direct pattern matching for fees, passing scores, and working days |
+- Multiple articles cover different reasons for dismissal. The retrieval picked the misconduct article instead of the grades article.
 
 
 ---
