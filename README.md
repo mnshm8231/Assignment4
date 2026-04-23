@@ -95,9 +95,13 @@ If the LLM output is not valid JSON, we fall back to a simpler method: split the
 
 ### 2. KG Schema
 
+The graph has three types of nodes connected in a chain:
+
 ```
 (:Regulation) -[:HAS_ARTICLE]-> (:Article) -[:CONTAINS_RULE]-> (:Rule)
 ```
+
+Each **Regulation** node represents one PDF document (e.g. "NCU Student Examination Rules"). Each **Article** node stores the text of one article or rule item from that document. Each **Rule** node holds a structured fact extracted from the article — what the condition is (`action`) and what happens (`result`).
 
 **Node properties:**
 
@@ -107,34 +111,11 @@ If the LLM output is not valid JSON, we fall back to a simpler method: split the
 | Article | `number`, `content`, `reg_name`, `category` |
 | Rule | `rule_id`, `type`, `action`, `result`, `art_ref`, `reg_name` |
 
-Two full-text indexes are created for search:
-- `article_content_idx` — searches article text
-- `rule_idx` — searches rule action and result fields
+Two full-text indexes are created so we can search by keyword:
+- `article_content_idx` — searches the raw article text
+- `rule_idx` — searches the extracted action and result fields
 
-**Screenshots:**
-
-> Overall graph — Regulation → Article → Rule
-
-*(Insert screenshot)*
-
-```cypher
-MATCH (reg:Regulation)-[:HAS_ARTICLE]->(a:Article)-[:CONTAINS_RULE]->(r:Rule)
-RETURN reg, a, r LIMIT 30
-```
-
-> Exam rules subgraph
-
-*(Insert screenshot)*
-
-```cypher
-MATCH (reg:Regulation {name: "NCU Student Examination Rules"})
-      -[:HAS_ARTICLE]->(a:Article)-[:CONTAINS_RULE]->(r:Rule)
-RETURN reg, a, r LIMIT 20
-```
-
-> Rule node properties
-
-*(Insert screenshot — click any Rule node in Neo4j Browser to see its properties)*
+Screenshots are included at the bottom of this document.
 
 ---
 
